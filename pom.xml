@@ -46,7 +46,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
+
 		<dependency>
     <groupId>com.google.zxing</groupId>
     <artifactId>core</artifactId>
@@ -57,7 +57,7 @@
     <artifactId>javase</artifactId>
     <version>3.4.0</version>
 </dependency>
-=======
+
 
 		<!-- Librería para el código QR -->
 
@@ -79,7 +79,6 @@
 		</dependency>
 
 
->>>>>>> 8e55ca6 (código finalizado de QR)
 	</dependencies>
 
 	<build>
