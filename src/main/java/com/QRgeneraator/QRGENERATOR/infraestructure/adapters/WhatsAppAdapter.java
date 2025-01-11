@@ -24,20 +24,20 @@ public class WhatsAppAdapter implements WhatsAppServiceOut {
             String accessToken = wspConfiguration.getAccessToken();
             String fromNumber = wspConfiguration.getFromNumber(); // Número de origen
 
-            /*System.out.println("Configuración de la API: ");
+            System.out.println("Configuración de la API: ");
             System.out.println("URL de la API: " + apiUrl);
             System.out.println("Token de acceso: " + accessToken.substring(0, 10) + "****");
             System.out.println("Número de origen: " + fromNumber);
             System.out.println("Número destino: " + number);
-            System.out.println("Mensaje a enviar: " + message);*/
+            System.out.println("Mensaje a enviar: " + message);
 
             String messagePayload = "{"
                     + "\"messaging_product\": \"whatsapp\","
                     + "\"to\": \"" + number + "\","
                     + "\"type\": \"template\","
                     + "\"template\": {"
-                    + "\"name\": \"hello_world\","
-                    + "\"language\": {\"code\": \"en_US\"}"
+                    + "\"name\": \"prueba\","
+                    + "\"language\": {\"code\": \"es\"}"
                     + "}"
                     + "}";
 
