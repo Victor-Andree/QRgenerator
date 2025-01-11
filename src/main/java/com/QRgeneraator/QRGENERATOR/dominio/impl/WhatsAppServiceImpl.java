@@ -16,7 +16,6 @@ public class WhatsAppServiceImpl implements WhatsAppServiceIn {
     @Override
     public void sendMessage(WhatsAppDTO request) {
         String number = request.getNumber();
-        String message = request.getMessage();
-        whatsAppServiceOut.sendMessage(number, message);
+        whatsAppServiceOut.sendMessage(number);
     }
 }

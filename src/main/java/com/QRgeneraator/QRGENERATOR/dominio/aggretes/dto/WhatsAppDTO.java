@@ -7,5 +7,4 @@ import lombok.Setter;
 @Setter
 public class WhatsAppDTO {
     private String number;
-    private String message;
 }

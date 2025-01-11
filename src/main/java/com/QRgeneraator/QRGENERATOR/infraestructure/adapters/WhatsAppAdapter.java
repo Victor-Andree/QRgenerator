@@ -18,30 +18,31 @@ public class WhatsAppAdapter implements WhatsAppServiceOut {
     private WspConfiguration wspConfiguration;
 
     @Override
-    public void sendMessage(String number, String message) {
+    public void sendMessage(String number) {
         try {
             String apiUrl = wspConfiguration.getApiUrl();
             String accessToken = wspConfiguration.getAccessToken();
             String fromNumber = wspConfiguration.getFromNumber(); // Número de origen
 
+            // Mensajes de depuración
             System.out.println("Configuración de la API: ");
             System.out.println("URL de la API: " + apiUrl);
             System.out.println("Token de acceso: " + accessToken.substring(0, 10) + "****");
             System.out.println("Número de origen: " + fromNumber);
             System.out.println("Número destino: " + number);
-            System.out.println("Mensaje a enviar: " + message);
+           /* System.out.println("Mensaje a enviar: " + message);*/
 
             String messagePayload = "{"
                     + "\"messaging_product\": \"whatsapp\","
                     + "\"to\": \"" + number + "\","
                     + "\"type\": \"template\","
                     + "\"template\": {"
-                    + "\"name\": \"prueba\","
-                    + "\"language\": {\"code\": \"es\"}"
+                    + "\"name\": \"hello_world\","
+                    + "\"language\": {\"code\": \"en_US\"}"
                     + "}"
                     + "}";
 
-            /*System.out.println("Cuerpo del mensaje en formato JSON: " + messagePayload);*/
+            System.out.println("Cuerpo del mensaje en formato JSON: " + messagePayload);
 
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -50,22 +51,29 @@ public class WhatsAppAdapter implements WhatsAppServiceOut {
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
+            System.out.println("Enviando solicitud HTTP...");
+
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = messagePayload.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             }
 
             int responseCode = connection.getResponseCode();
+            System.out.println("Código de respuesta de la API: " + responseCode);
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("Mensaje enviado correctamente.");
             } else {
+                System.out.println("Error al enviar el mensaje. Código de respuesta: " + responseCode);
                 try (InputStream is = connection.getErrorStream()) {
                     if (is != null) {
                         String errorResponse = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                        System.out.println("Respuesta de error: " + errorResponse);
                     }
                 }
             }
         } catch (Exception e) {
+            System.err.println("Ocurrió un error al enviar el mensaje: " + e.getMessage());
             e.printStackTrace();
         }
     }
