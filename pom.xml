@@ -46,7 +46,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
     <groupId>com.google.zxing</groupId>
     <artifactId>core</artifactId>
@@ -88,6 +92,9 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
+		<!-- Librería para el WhatsAPP -->
+
 
     </dependencies>
 
