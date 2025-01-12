@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class QRCodeController {
@@ -16,11 +17,8 @@ public class QRCodeController {
     @Autowired
     QRServIn qrServIn;
 
-    @GetMapping("/generate-qr")
-    public ResponseEntity<byte[]> generateQRCode(@RequestParam String content,
-                                                 @RequestParam(defaultValue = "100") int width,
-                                                 @RequestParam(defaultValue = "100") int height) {
-        QRCode request = new QRCode(content, width, height);
+    @PostMapping("/generate-qr")
+    public ResponseEntity<byte[]> generateQRCode(@RequestBody QRCode request) {
         byte[] qrCode = qrServIn.generateQRCode(request);
 
         HttpHeaders headers = new HttpHeaders();
