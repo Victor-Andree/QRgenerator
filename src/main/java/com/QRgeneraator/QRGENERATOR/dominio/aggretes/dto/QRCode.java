@@ -2,8 +2,8 @@ package com.QRgeneraator.QRGENERATOR.dominio.aggretes.dto;
 
 public class QRCode {
     private String content;
-    private int width;
-    private int height;
+    private int width=200;
+    private int height=200;
 
     public QRCode() {}
 

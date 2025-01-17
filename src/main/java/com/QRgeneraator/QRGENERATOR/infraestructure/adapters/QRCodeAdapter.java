@@ -1,6 +1,7 @@
 package com.QRgeneraator.QRGENERATOR.infraestructure.adapters;
 
 import com.QRgeneraator.QRGENERATOR.dominio.ports.out.QRServOut;
+import com.QRgeneraator.QRGENERATOR.exceptions.QRExcepcionts.QRCodeGenerationException;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -18,12 +19,12 @@ public class QRCodeAdapter implements QRServOut {
     public byte[] generateQRCode(String content, int width, int height) {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         try {
-            BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, 200, 200);
+            BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height);
             ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream);
             return pngOutputStream.toByteArray();
         } catch (WriterException | IOException e) {
-            throw new RuntimeException("Error generating QR Code", e);
+            throw new QRCodeGenerationException("Error al generar el Código QR", e);
         }
     }
 }
