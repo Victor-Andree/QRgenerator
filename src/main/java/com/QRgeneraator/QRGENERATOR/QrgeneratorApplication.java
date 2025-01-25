@@ -9,5 +9,4 @@ public class QrgeneratorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QrgeneratorApplication.class, args);
 	}
-
 }
